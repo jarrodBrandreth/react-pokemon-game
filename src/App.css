@@ -1,38 +1,270 @@
-.App {
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+  --main-font:'Roboto', sans-serif;
+  --monospace-font: 'Source Code Pro', monospace;
+  --screen-font:  'Press Start 2P', monospace;
+  --dark-gray: rgb(96, 95, 95);
+  --light-gray: rgb(211, 211, 211);
+  --game-green: rgb(131 215 52);
+  --screen-green: #cadc9f;
+  --screen-black: rgb (0, 0, 0);
+  font-family: var(--main-font);
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+button:disabled,
+button[disabled=true] {
+filter: opacity(0.5);
+cursor:unset;
+}
+
+.game {
+  max-width: 500px;
+  min-height: 640px;
+  margin: auto;
+  padding: 30px 30px 40px;
+  border-radius: 14px;
+  background-color: var(--game-green);
+}
+
+.game .screen-wrap {
+  position: relative;
+  background-color: var(--dark-gray);
+  border-radius: 8px;
+}
+
+.game .header {
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 800;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+}
+
+.game .nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px;
+}
+
+.game .title {
+  margin-right: 12px;
+  color: var(--light-gray);
+  font-size: 1.6rem;
+  font-style: italic;
+}
+
+.game .name {
+  font-size: 1.6rem;
+  font-family: var(--monospace-font);
+  background: linear-gradient(
+    90deg,
+    #ff6663 12.5%,
+    #cc99c9 0,
+    #cc99c9 25%,
+    #9ee09e 0,
+    #9ee09e 37.5%,
+    #fdfd97 0,
+    #fdfd97 50%,
+    #9ec1cf 0,
+    #9ec1cf 62.5%,
+    #feb144 0,
+    #feb144 75%,
+    #ff6663 0,
+    #ff6663 87.5%,
+    #cc99c9 0
+  );
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.game .screen {
+  background-color: var(--screen-green);
+  font-family: var(--screen-font);
+  padding: 16px;
+  border-radius: 0px 0px 8px 8px;
+}
+
+.game .screen .heading {
+  font-size: 1rem;
+  font-weight: 400;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.nav-btn {
+  color: var(--light-gray);
+  fill: var(--light-gray);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.hints,.controls {
+  width: 100%;
+  position: absolute;
+  top:calc(100% + 12px) ;
+  left: 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-family: var(--main-font);
 }
 
-.App-link {
-  color: #61dafb;
+.hint-btn {
+  padding: 4px 6px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.76rem;
+  background-color: var(--dark-gray);
+  color: whitesmoke;
+  fill: whitesmoke;
+  border-radius: 4px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.game .name.guess.who {
+  background: linear-gradient(
+    90deg,
+    #ff6663 11%,
+    #cc99c9 0,
+    #cc99c9 22%,
+    #9ee09e 0,
+    #9ee09e 33%,
+    #fdfd97 0,
+    #fdfd97 44%,
+    #9ec1cf 0,
+    #9ec1cf 55%,
+    #feb144 0,
+    #feb144 66%,
+    #feb144 0,
+    #feb144 77%,
+    #ff6663 0,
+    #ff6663 88%,
+    #cc99c9 0
+  );
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.game .name.tournament {
+  background: linear-gradient(
+    90deg,
+    #ff6663 10%,
+    #cc99c9 0,
+    #cc99c9 20%,
+    #9ee09e 0,
+    #9ee09e 30%,
+    #fdfd97 0,
+    #fdfd97 40%,
+    #9ec1cf 0,
+    #9ec1cf 50%,
+    #feb144 0,
+    #feb144 60%,
+    #ff6663 0,
+    #ff6663 70%,
+    #cc99c9 0,
+    #cc99c9 80%,
+    #9ee09e 0,
+    #9ee09e 90%,
+    #fdfd97 0
+  );
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+@media (max-width:450px) {
+  .game {
+    padding: 20px 16px 30px;
   }
-  to {
-    transform: rotate(360deg);
+  .game .title,.game .name {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width:350px) {
+  .game {
+    padding: 20px 12px 30px;
+  }
+  .game .title,.game .name {
+    font-size: 1.2rem;
   }
 }

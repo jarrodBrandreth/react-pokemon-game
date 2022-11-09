@@ -1,0 +1,37 @@
+.keyboard {
+  max-width: 500px;
+  margin: auto;
+  padding-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(20, minmax(0, 1fr));
+  grid-template-areas:
+    'q q w w e e r r t t y y u u i i o o p p'
+    '. a a s s d d f f g g h h j j k k l l .'
+    'hyphen hyphen z z x x c c v v b b n n m m backspace backspace backspace backspace';
+  gap: 8px 6px;
+}
+
+.keyboard .key {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 56px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: whitesmoke;
+  background-color: var(--dark-gray);
+  border-radius: 6px;
+  border: none;
+}
+
+.keyboard .key:active {
+  transform: scale(0.92);
+  background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
+}
+
+@media (max-width: 460px) {
+  .keyboard {
+    gap: 8px 2px;
+  }
+}

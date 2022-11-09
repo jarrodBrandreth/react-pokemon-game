@@ -1,0 +1,67 @@
+.player-guess {
+  width: 100%;
+  margin: 0 auto 20px;
+  color: var(--dark-gray);
+}
+
+.player-guess .display {
+  width: 80%;
+  margin: 0 auto 12px;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  border-radius: 6px;
+  border: 4px solid var(--dark-gray);
+  background-color: rgb(176, 218, 176);
+  font-size: 1.4rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+.player-guess .display.correct {
+  transition: all 1s ease;
+  animation: flash 1s ease 500ms forwards;
+}
+
+@keyframes flash {
+  25% {
+    color: transparent;
+  }
+  50% {
+    color: inherit;
+  }
+  75% {
+    color: transparent;
+  }
+  100% {
+    color: inherit;
+  }
+}
+
+.player-guess .letters-remaining {
+  width: max-content;
+  margin: auto;
+  font-size: 0.8rem;
+  color: black;
+}
+
+.player-guess .letters-remaining.max-letters {
+  color: rgb(219, 1, 1);
+}
+
+.player-guess .letters-remaining.letters-remaining.max-letters .correct {
+  color: forestgreen;
+}
+
+.player-guess .letters-remaining .number {
+  margin: 0px 4px;
+}
+
+@media (max-width: 450px) {
+  .player-guess .display {
+    width: 100%;
+  }
+}

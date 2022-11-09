@@ -1,0 +1,22 @@
+.mystery-character {
+position: relative;
+padding-top: 14px;
+}
+
+.mystery-character .heading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.mystery-character .image {
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  transition: all 0.5s;
+}
+
+.mystery-character.blur .image {
+  filter:blur(5px);
+}

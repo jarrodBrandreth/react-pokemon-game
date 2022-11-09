@@ -1,0 +1,97 @@
+.tournament-intro {
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.tournament-intro .heading {
+  text-transform: uppercase;
+}
+
+.tournament-intro .round-num-choice {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0px;
+}
+
+.tournament-intro .set-rounds {
+  display: flex;
+  align-items: center;
+  margin: 0px 6px;
+}
+
+.tournament-intro .set-rounds .number {
+  margin: 0 6px;
+}
+
+.play {
+  border: 3px solid black;
+  color: black;
+  border-radius: 6px;
+  padding: 6px;
+  text-transform: uppercase;
+}
+
+.scoreboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom:12px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.scoreboard .score {
+  margin-right:14px;
+}
+
+.round .number.last-round {
+  color: crimson;
+}
+
+.tournament-end {
+}
+
+.tournament-end .details {
+  margin: 16px 0px;
+  font-size: 0.9rem;
+}
+
+.tournament-end .details .final-score {
+  margin: 12px 0px;
+  font-size: 1rem;
+}
+
+.tournament-end .options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tournament-end .options button {
+  font-size: 0.6rem;
+  border: none;
+  text-transform: uppercase;
+  border-radius: 6px;
+  padding: 6px;
+  align-items: flex-end;
+  color: black;
+}
+
+@media (hover: hover) {
+  .play:hover {
+    background-color: black;
+    color: var(--screen-green);
+  }
+
+  .tournament-end .options button:hover {
+    background-color: black;
+    color: var(--screen-green);
+    fill: var(--screen-green);
+  }
+}

@@ -1,0 +1,56 @@
+.game-selection {
+  position: relative;
+  min-height: 372px;
+}
+
+.game-selection .header {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.game-selection .option-container {
+  position: relative;
+}
+
+.game-selection .image {
+  width: 200px;
+  margin: auto;
+}
+
+.game-selection .option {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.game-selection .description {
+  margin: 20px 6px;
+  font-size: 0.8rem;
+}
+
+.game-selection .controls {
+  top: calc(100% + 46px);
+}
+
+.game-selection .toggles {
+  width: max-content;
+  display: flex;
+}
+
+.game-selection .toggle.back {
+  padding: 2px 20px 2px 6px;
+  margin-right: 20px;
+}
+
+.game-selection .toggle.forward {
+  padding: 2px 6px 2px 20px;
+}
+
+.game-selection .start {
+  font-size: 1rem;
+}
