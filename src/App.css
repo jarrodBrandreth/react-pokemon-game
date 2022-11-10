@@ -90,6 +90,11 @@ filter: opacity(0.5);
 cursor:unset;
 }
 
+.error {
+  height:200px;
+  text-align: center;
+}
+
 .game {
   max-width: 500px;
   min-height: 640px;

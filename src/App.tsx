@@ -9,17 +9,18 @@ import GuessWhoGame from './components/guessWhoGame/GuessWhoGame';
 import GameSelection from './components/gameSelection/GameSelection';
 import Pokeball from './components/pokeball/Pokeball';
 import TournamentGame from './components/tournamentGame/TournamentGame';
-import { CharactersList, CurrentCharacterProps } from './types/Types';
+import { CharactersListProps, CurrentCharacterProps } from './types/Types';
 import './App.css';
 
 function App() {
-  const [charactersList, setCharactersList] = useState<Array<CharactersList>>();
+  const [charactersList, setCharactersList] = useState<Array<CharactersListProps>>([]);
   const [currentCharacter, setCurrentCharacter] = useState<CurrentCharacterProps>();
   const [gameMode, setGameMode] = useState<string | null>(null);
   const [playerGuess, setPlayerGuess] = useState('');
   const [revealedLetters, setRevealedLetters] = useState(0);
   const [isLoading, setIsLoading] = useState<boolean>();
   const [error, setError] = useState(false);
+  const needCharacters = charactersList.length === 0;
 
   useEffect(() => {
     setIsLoading(true);
@@ -36,7 +37,7 @@ function App() {
       }
     };
     fetchCharacters();
-  }, []);
+  }, [needCharacters]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -56,7 +57,7 @@ function App() {
         setIsLoading(false);
       }
     };
-    if (charactersList) fetchCurrentCharacterData(charactersList[0].url);
+    if (charactersList.length) fetchCurrentCharacterData(charactersList[0].url);
   }, [charactersList]);
 
   const keyboardClick = (key: string) => {
@@ -84,15 +85,20 @@ function App() {
   };
 
   const newRound = () => {
-    if (!charactersList) return;
+    if (!charactersList.length) return;
     setPlayerGuess('');
     setRevealedLetters(0);
     setCharactersList((charactersList) => {
-      if (!charactersList) return;
+      if (!charactersList) return [];
       return charactersList
         .filter((character) => character.name !== currentCharacter?.name)
         .sort(() => Math.random() - 0.5);
     });
+  };
+
+  const navigateHome = () => {
+    newRound();
+    setGameMode(null);
   };
 
   return (
@@ -101,12 +107,7 @@ function App() {
         <div className="screen-wrap">
           <header className="header">
             <nav className="nav">
-              <IconButton
-                Icon={HomeIcon}
-                size="22px"
-                className="nav-btn"
-                handler={() => setGameMode(null)}
-              />
+              <IconButton Icon={HomeIcon} size="22px" className="nav-btn" handler={navigateHome} />
               <IconButton
                 Icon={HelpIcon}
                 size="26px"
@@ -120,8 +121,9 @@ function App() {
             </h2>
           </header>
           <section className="screen">
+            {error && <div className="error">Error Loading Pokémon...</div>}
             {isLoading && <Loader msg="loading" />}
-            {!gameMode && <GameSelection chooseGame={setGameMode} />}
+            {!gameMode && !error && <GameSelection chooseGame={setGameMode} />}
             {gameMode === 'scramble' && currentCharacter && (
               <ScrambleGame
                 character={currentCharacter}

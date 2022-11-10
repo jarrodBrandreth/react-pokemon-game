@@ -4,7 +4,7 @@ export type SvgComponentAsProps = React.FunctionComponent<
   }
   >;
 
-  export interface CharactersList {
+  export interface CharactersListProps {
     name: string;
     url: string;
   }

@@ -29,6 +29,7 @@ function TournamentGame({
   const revealLetterCost = -Math.floor(50 / character.name.length);
 
   const startTournament = () => {
+    newRound();
     setScore(0);
     setCurrentRound(0);
     setStart(true);
