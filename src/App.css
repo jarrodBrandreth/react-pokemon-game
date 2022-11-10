@@ -165,6 +165,7 @@ cursor:unset;
 }
 
 .game .screen {
+  position: relative;
   background-color: var(--screen-green);
   font-family: var(--screen-font);
   padding: 16px;

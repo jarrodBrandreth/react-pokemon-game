@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import Loader from './components/loader/Loader';
 import IconButton from './components/IconButton/IconButton';
-import { ReactComponent as HomeIcon } from './assets/icons/home.svg';
-import { ReactComponent as HelpIcon } from './assets/icons/help-circle.svg';
 import Keyboard from './components/keyboard/Keyboard';
 import ScrambleGame from './components/scrambleGame/ScrambleGame';
 import GuessWhoGame from './components/guessWhoGame/GuessWhoGame';
 import GameSelection from './components/gameSelection/GameSelection';
 import Pokeball from './components/pokeball/Pokeball';
 import TournamentGame from './components/tournamentGame/TournamentGame';
+import Info from './components/info/Info';
+import { ReactComponent as HomeIcon } from './assets/icons/home.svg';
+import { ReactComponent as HelpIcon } from './assets/icons/help-circle.svg';
 import { CharactersListProps, CurrentCharacterProps } from './types/Types';
 import './App.css';
 
 function App() {
   const [charactersList, setCharactersList] = useState<Array<CharactersListProps>>([]);
   const [currentCharacter, setCurrentCharacter] = useState<CurrentCharacterProps>();
+  const [showInfo, setShowInfo] = useState(false);
   const [gameMode, setGameMode] = useState<string | null>(null);
   const [playerGuess, setPlayerGuess] = useState('');
   const [revealedLetters, setRevealedLetters] = useState(0);
@@ -97,6 +99,7 @@ function App() {
   };
 
   const navigateHome = () => {
+    if (!gameMode) return;
     newRound();
     setGameMode(null);
   };
@@ -112,7 +115,7 @@ function App() {
                 Icon={HelpIcon}
                 size="26px"
                 className="nav-btn"
-                handler={() => console.log('help screen')}
+                handler={() => setShowInfo(!showInfo)}
               />
             </nav>
             <h1 className="title">Poké Fun</h1>
@@ -122,6 +125,7 @@ function App() {
           </header>
           <section className="screen">
             {error && <div className="error">Error Loading Pokémon...</div>}
+            {showInfo && <Info gameMode={gameMode} setShowInfo={setShowInfo} />}
             {isLoading && <Loader msg="loading" />}
             {!gameMode && !error && <GameSelection chooseGame={setGameMode} />}
             {gameMode === 'scramble' && currentCharacter && (
@@ -154,7 +158,6 @@ function App() {
             )}
           </section>
         </div>
-
         <section className="bottom">
           {gameMode && currentCharacter && <Keyboard keyboardClick={keyboardClick} />}
         </section>

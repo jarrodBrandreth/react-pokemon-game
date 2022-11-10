@@ -90,6 +90,7 @@ function TournamentGame({
           playerGuess={playerGuess}
           revealLetter={useRevealAsLetterHint}
           roundEnd={roundEnd}
+          setScore={setScore}
         />
       )}
       {tournamentEnd && start && (

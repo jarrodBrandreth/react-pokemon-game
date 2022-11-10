@@ -12,9 +12,16 @@ interface GuessWhoGameProps {
   playerGuess: string;
   revealLetter: () => void;
   roundEnd: () => void;
+  setScore?: React.Dispatch<React.SetStateAction<number>>;
 }
 
-function GuessWhoGame({ character, playerGuess, revealLetter, roundEnd }: GuessWhoGameProps) {
+function GuessWhoGame({
+  character,
+  playerGuess,
+  revealLetter,
+  roundEnd,
+  setScore,
+}: GuessWhoGameProps) {
   const [blur, setBlur] = useState(true);
   const [showFront, setShowFront] = useState(false);
   const correct = playerGuess === character.name;
@@ -33,11 +40,13 @@ function GuessWhoGame({ character, playerGuess, revealLetter, roundEnd }: GuessW
 
   const spin = () => {
     if (showFront) return;
+    if (setScore) setScore((score) => score - 10);
     setShowFront(true);
   };
 
   const unBlur = () => {
     if (!blur) return;
+    if (setScore) setScore((score) => score - 10);
     setBlur(false);
   };
   return (

@@ -1,0 +1,30 @@
+.game .info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 3px solid var(--dark-gray);
+  border-radius: 0px 0px 4px 4px;
+  padding: 8px;
+  background-color: var(--screen-green);
+  z-index: 10;
+}
+
+.game .info .title {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 400;
+  color: black;
+}
+
+.game .info .description {
+  list-style-type: square;
+  padding: 20px;
+  font-size: 0.8rem;
+}
+
+.game .info .close-info {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
