@@ -1,6 +1,7 @@
 # React pokemon game
 
 project built using React/TS using PokeApi https://pokeapi.co 
+hosted at https://pokemon-game-test.onrender.com/
 
 # Getting Started with Create React App
 
